@@ -14,6 +14,10 @@ link: {
     required: true,
     unqiue: true
 },
+articleDate: {
+    type: String
+   
+},
 Comment: {
     type: Schema.Types.ObjectId,
     ref: "Comment"
