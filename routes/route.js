@@ -23,44 +23,41 @@ router.get('/', function(req, res) {
 
 // Scrape data from one site and place it into the mongodb db
 router.get('/scrape', function(req, res) {
-  console.log("This is the scrape route")
-  axios.get('https://stocknews.com/top-stories/').then(function(response) {
-    console.log("scraping seeking alpha")
+	console.log('This is the scrape route');
+	axios.get('https://www.pennlive.com/').then(function(response) {
+		console.log('scraping pennlive');
 		var $ = cheerio.load(response.data);
+		console.log('this is the scrape route');
 		// With cheerio, find each p-tag with the "title" class
 		// (i: iterator. element: the current element)
-		$('div .margin-bottom').each(function(i, element) {
+		$(".article").each(function(i, element) {
 			// Save the text of the element in a "title" variable
-      var title = $(element).children().eq(1).find("h3").find("a").text();
-      var link = $(element).children().eq(1).find("h3").find("a").attr("href");
-      var articleDate = $(element).children().eq(1).find("section").find("a").attr("href");
-      
+			var title = $(element).children().eq(1).find('h3').find('a').text();
+			var link = $(element).children().eq(1).find('h3').find('a').attr('href');
+			var articleDate = $(element).children().eq(1).find('section').find('a').attr('href');
+
+			var result = {
+				title: title,
+				link: link,
+				articleDate: articleDate
+			};
+			console.log(result);
 			// If this found element had both a title and a link
-			if (title && link) {
-        // Insert the data in the Articles db
-        	//try .create if insert is not working
-				db.Article.create(
-					{
-						title: title,
-            link: link,
-            articleDate: articleDate
-
-					},
-					function(err, inserted) {
-						if (err) {
-							// Log the error if one is encountered during the query
-							console.log(err);
-						} else {
-							// Otherwise, log the inserted data
-							console.log(inserted);
-						}
+			// Insert the data in the Articles db
+			//try .create if insert is not working
+			db.Article
+				.create(result)
+				.then(function(inserted) {
+					// Log the error if one is encountered during the query
+					console.log(inserted);
+				})
+				.catch(function(err) {
+					console.log(err);
 				});
-      }
-    });
-    	// Send a "Scrape Complete" message to the browser
-	res.send('Scrape Complete');
+		});
+		// Send a "Scrape Complete" message to the browser
+		res.send('Scrape Complete');
 	});
-
 });
 
 //grab article from DB
