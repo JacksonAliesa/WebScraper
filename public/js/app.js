@@ -23,3 +23,6 @@ $("#clearBtn").on("click", function(event) {
   })
 });
 
+$(".saveBtn").on("click", function(event){
+  event.preventDefault();
+})

@@ -1,7 +1,33 @@
+<nav class="navbar navbar-light bg-light">
+  <span class="navbar-brand mb-0 h1"><i class="fas fa-chart-line"></i>StockNews</span>
+</nav>
+
 <div class="container" id="banner">
-<div class="jumbotron border-primary">
-  <h1 class="display-3">Scraping</h1>
-  <button type="button" class="btn btn-outline-primary" href="/">Home</button>
-  {{!-- <button type="button" class="btn btn-outline-primary">Saved Articles</button> --}}
+  <div class="jumbotron border-primary">
+    <h1 class="display-3">Scraping</h1>
+    <button type="button" class="btn btn-outline-primary" id="scrapeBtn">Fresh Scrape</button>
+    <button type="button" class="btn btn-outline-primary">Saved Articles</button>
+     <button type="button" class="btn btn-outline-primary" id="clearBtn">Clear All</button>
+  </div>
 </div>
+
+<!-- name of hbs obj that we created in the / route-->
+<div class="container">
+  {{#each articles}}
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body bg-light" id="articleContent">
+          <h3 class="card-title" id="title">{{title}}</h3>
+          <a href="{{link}}" id="link">{{link}}</a>
+          <!--this button will direct them to their saved comments-->
+          <center>
+            <span> <button class="saveBtn" data-id={{_id}}>Save</button> </span>
+          </center>
+        </div>
+      </div>
+    </div>
+  </div>
+  {{/each}}
+
 </div>

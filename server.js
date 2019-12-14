@@ -33,7 +33,7 @@ app.use(express.static("public"));
 
 //make connection to DB 
 //mongoose NPM package
-mongoose.connect('mongodb://localhost/CompanyReviews', {
+mongoose.connect('mongodb://localhost/newsScraper', {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
