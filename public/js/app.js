@@ -10,10 +10,16 @@ $("#scrapeBtn").on("click", function (event) {
     console.log(data)
     location.reload();
   })
-  
-  
 });
 
-//on click function to save user's article to the saved page
-// $("saveBtn")
+//clear button to empty articles
+$("#clearBtn").on("click", function(event) {
+  event.preventDefault();
+  console.log("Clear all button clicked.")
+  $.ajax("/clear", {
+      type: "DELETE"
+  }). then (function(){
+      location.reload();
+  })
+});
 

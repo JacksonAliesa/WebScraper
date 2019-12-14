@@ -34,12 +34,12 @@ router.get('/scrape', function(req, res) {
 			// Save the text of the element in a "title" variable
 			var title = $(element).children().eq(1).find('h3').find('a').text();
 			var link = $(element).children().eq(1).find('h3').find('a').attr('href');
-			var articleDate = $(element).children().eq(1).find('section').find('a').attr('href');
+			// var articleDate = $(element).children().eq(1).find('section').find('a').attr('href');
 
 			var result = {
 				title: title,
-				link: link,
-				articleDate: articleDate
+				link: link
+				// articleDate: articleDate
 			};
 			console.log(result);
 			// If this found element had both a title and a link
@@ -60,6 +60,12 @@ router.get('/scrape', function(req, res) {
 	});
 });
 
+router.delete('/clear', function (req, res) {
+	db.Article.remove({} , function(data){
+		console.log("clear")
+		res.send("database clear");
+	})
+	});
 //grab article from DB
 // Route for getting all Articles from the db
 // app.get("/articles", function(req, res) {
