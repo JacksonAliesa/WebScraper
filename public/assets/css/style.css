@@ -1,6 +1,14 @@
 body {
   font-family: 'Lilita One', cursive;
-  background-image: url("https://rfclipart.com/image/big/ed-12-0d/grunge-white-and-black-brick-wall-Download-Royalty-free-Vector-File-EPS-215399.jpg");
+  /* background-image: url("https://rfclipart.com/image/big/ed-12-0d/grunge-white-and-black-brick-wall-Download-Royalty-free-Vector-File-EPS-215399.jpg"); */
+
+  background-image: url("https://uncoveringpa.com/wp-content/uploads/2018/12/July-4th-fireworks-Pennsylvania-Capitol-Harrisburg-6310.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+ 
+}
+.jumbotron{
+  opacity: 0.6;
 }
 
 #banner{
@@ -16,3 +24,9 @@ font-family: 'Lilita One', cursive;
 align-items: center;
 }
 
+/* #savedPage {
+  background-image: url("https://fsa.zobj.net/crop.php?r=LMa9T2CrcmBLah8IDHowQ5LF2MZBvyqHgpIQtbiMbcFaSJLenswSeF2NgVPYZe86rXE3P271ea5N_hYkflU2ZAyIhpTyfustpvIv0qgj2p80q6AQ5iZo0FcaX8b64s9YRUE-gU6Gu2I_etr8");
+  background-repeat: no-repeat;
+  background-size: cover;
+  
+} */

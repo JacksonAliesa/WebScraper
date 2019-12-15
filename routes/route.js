@@ -34,12 +34,12 @@ router.get('/scrape', function(req, res) {
 			// Save the text of the element in a "title" variable
 			var title = $(element).children().eq(1).find('h3').find('a').text();
 			var link = $(element).children().eq(1).find('h3').find('a').attr('href');
-			// var articleDate = $(element).children().eq(1).find('section').find('a').attr('href');
+			var img = $(element).children().eq(0).find('a').find('img').attr('src');
 
 			var result = {
 				title: title,
-				link: link
-				// articleDate: articleDate
+				link: link,
+				img: img
 			};
 			console.log(result);
 			// If this found element had both a title and a link
@@ -76,7 +76,8 @@ router.put("/saved/:id", function(req, res){
 	})
 });
 
-//route to unsave article
+//route to remove article from saved articles page
+//once article is removed it will display on home page
 router.put("/unsaved/:id", function(req, res){
 	db.Article.updateOne({_id: req.params.id}, 
 		{ $set: { saved: false } })
@@ -85,14 +86,23 @@ router.put("/unsaved/:id", function(req, res){
 	})
 });
 
+// A DELETE route to REMOVE saved items from database
+// apirouter.delete("/clear_saved", function (req, res){
+// 	db.Item.remove({ saved: true }, function (result) {
+// 	  res.send("Database cleared.")
+// 	})
+//   });
+  
+  // A DELETE route to REMOVE specific saved item from database
+//   apirouter.delete("/delete_item/:id", function (req, res){
+// 	db.Item.remove({ _id: req.params.id}, function (result) {
+// 	  res.send("Item deleted.")
+// 	})
+//   });
 
-// router.get("saved/", function (req, res) {
-//     console.log("this saved route is working")
-//     db.Article.find({ saved: true }, function (error, result) {
-//         res.json(result)
-//     });
-// });
 
+
+//route that allows user to save articles and add it to their saved list page
 router.get("/saved", function (req, res) {
     db.Article.find({ saved: true })
         .then(function (data) {

@@ -1,8 +1,8 @@
 
 <div class="container" id="banner">
   <div class="jumbotron border-primary">
-    <h1 class="display-3">Scraping</h1>
-    <button type="button" class="btn btn-outline-primary" id="scrapeBtn">Fresh Scrape</button>
+    <h1 class="display-3">Your Penn Live News Scraper</h1>
+    <button type="button" class="btn btn-outline-primary" id="scrapeBtn">Start Scraping</button>
     <a href="/saved" class="btn btn-outline-primary">Saved Articles</a>
      <button type="button" class="btn btn-outline-primary" id="clearBtn">Clear All</button>
   </div>
@@ -15,6 +15,7 @@
     <div class="col-12">
       <div class="card">
         <div class="card-body bg-light" id="articleContent">
+          <img src="{{img}}" />
           <h3 class="card-title" id="title">{{title}}</h3>
           <a href="{{link}}" id="link">{{link}}</a>
           <!--this button will direct them to their saved comments-->

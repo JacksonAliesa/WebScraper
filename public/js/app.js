@@ -37,4 +37,18 @@ $(".saveBtn").on("click", function (event) {
       })
     });
 
+    //remove article from saved list
+    $(".removeArticle").on("click", function (event) {
+      event.preventDefault();
+      var _id = $(this).attr("data-id");
+      console.log("Remove button clicked.");
+      
+      $.ajax("/unsaved/" + _id, {
+          type: "PUT",
+          data: { saved: false },
+      }).then(function () {
+          location.reload();
+      });
+  });
+
 
