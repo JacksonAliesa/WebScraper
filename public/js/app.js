@@ -6,23 +6,35 @@ $("#scrapeBtn").on("click", function (event) {
   $.ajax({
     type: "GET",
     url: "/scrape"
-  }).then(function(data) {
+  }).then(function (data) {
     console.log(data)
     location.reload();
   })
 });
 
 //clear button to empty articles
-$("#clearBtn").on("click", function(event) {
+$("#clearBtn").on("click", function (event) {
   event.preventDefault();
   console.log("Clear all button clicked.")
   $.ajax("/clear", {
-      type: "DELETE"
-  }). then (function(){
-      location.reload();
+    type: "DELETE"
+  }).then(function () {
+    location.reload();
   })
 });
 
-$(".saveBtn").on("click", function(event){
+//save button that captures user's ID to store on their saved articles list
+$(".saveBtn").on("click", function (event) {
   event.preventDefault();
-})
+  console.log("save button")
+  var _id = $(this).attr("data-id")
+  $.ajax( "/saved/" + _id, {
+    type: "PUT",
+    data: { saved: true }
+      }).then (function() {
+       
+        location.reload();
+      })
+    });
+
+

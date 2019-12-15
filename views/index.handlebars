@@ -1,12 +1,9 @@
-<nav class="navbar navbar-light bg-light">
-  <span class="navbar-brand mb-0 h1"><i class="fas fa-chart-line"></i>StockNews</span>
-</nav>
 
 <div class="container" id="banner">
   <div class="jumbotron border-primary">
     <h1 class="display-3">Scraping</h1>
     <button type="button" class="btn btn-outline-primary" id="scrapeBtn">Fresh Scrape</button>
-    <button type="button" class="btn btn-outline-primary">Saved Articles</button>
+    <a href="/saved" class="btn btn-outline-primary">Saved Articles</a>
      <button type="button" class="btn btn-outline-primary" id="clearBtn">Clear All</button>
   </div>
 </div>
@@ -22,7 +19,7 @@
           <a href="{{link}}" id="link">{{link}}</a>
           <!--this button will direct them to their saved comments-->
           <center>
-            <span> <button class="saveBtn" data-id={{_id}}>Save</button> </span>
+            <span> <button class="saveBtn btn btn-primary" data-id={{_id}}>Save</button> </span>
           </center>
         </div>
       </div>

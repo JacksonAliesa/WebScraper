@@ -67,9 +67,48 @@ router.delete('/clear', function (req, res) {
 	})
 	});
 
-router.put("/save-article/:id", function(data){
-	db.Article.Update()
-})	
+	//routes for the saved articles
+router.put("/saved/:id", function(req, res){
+	db.Article.update({_id: req.params.id}, 
+		{ $set: { saved: true } })
+		.then(function (result){
+		res.send("saved articles")
+	})
+});
+
+//route to unsave article
+router.put("/unsaved/:id", function(req, res){
+	db.Article.updateOne({_id: req.params.id}, 
+		{ $set: { saved: false } })
+		.then(function (result){
+		res.send("saved articles")
+	})
+});
+
+
+// router.get("saved/", function (req, res) {
+//     console.log("this saved route is working")
+//     db.Article.find({ saved: true }, function (error, result) {
+//         res.json(result)
+//     });
+// });
+
+router.get("/saved", function (req, res) {
+    db.Article.find({ saved: true })
+        .then(function (data) {
+            // If we were able to successfully find, send them back to user
+            var hbsObject = {
+                articles: data
+            };
+            console.log("here is the object being sent to handlebars")
+            console.log(hbsObject);
+            res.render("saved", hbsObject);
+        })
+        .catch(function (err) {
+            // If an error occurred, send it to the user
+            res.json(err);
+        });
+    });
 
 //app is what initializes express
 module.exports = router;
