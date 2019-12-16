@@ -33,8 +33,9 @@ app.use(express.static("public"));
 
 //make connection to DB 
 //mongoose NPM package
-varMOGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/newsScraper";
-mongoose.connect(MONGODB_URI, {
+var MOGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/newsScraper";
+mongoose.connect(MONGODB_URI
+  , {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
