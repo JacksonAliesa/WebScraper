@@ -33,7 +33,7 @@ app.use(express.static("public"));
 
 //make connection to DB 
 //mongoose NPM package
-var MOGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/newsScraper";
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/newsScraper";
 mongoose.connect(MONGODB_URI
   , {
   useNewUrlParser: true,
